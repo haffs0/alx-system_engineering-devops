@@ -1,2 +1,2 @@
-rev
-cut -f 1,6 -d ':' /etc/passwd | sort
+#!/bin/bash
+cat /etc/passwd | sort -k1 | cut -d ':' -f1,6
