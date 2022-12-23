@@ -1,11 +1,6 @@
-#client configuration file
+#client configuration file with puppet
 
-exec {
-  command => "echo 'IdentityFile ~/.ssh/school' >> /etc/ssh/ssh_config",
-  path => /usr/bin
-}
-
-exec {
-  command => "echo 'PasswordAuthentication no' >> /etc/ssh/ssh_config",
-  path => /usr/bin
+exec { 'ssh_config':
+  path    => '/bin',
+  command => 'echo "PasswordAuthentication no" >> /etc/ssh/ssh_config; echo "IdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config',
 }
