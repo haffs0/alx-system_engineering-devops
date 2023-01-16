@@ -7,14 +7,13 @@ import sys
 import requests
 
 
-def get_todos(id):
-    url = f"https://jsonplaceholder.typicode.com/todos/?userId={id}"
-    todos = requests.get(url).json()
-    url_users = f"https://jsonplaceholder.typicode.com/users/{id}"
-    name = requests.get(url_users).json()['name']
+def get_todos(id=None):
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(id)).json()
+    todos = requests.get(url + "todos", params={"userId": id}).json()
     complete = [todo['title'] for todo in todos if todo['completed']]
     print("Employee {} is done with tasks({}/{}):".format(
-        name, len(complete), len(todos)))
+        user.get('name'), len(complete), len(todos)))
     for title in complete:
         print("\t {}".format(title))
 
