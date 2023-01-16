@@ -6,8 +6,9 @@ import sys
 if __name__ == "__main__":
     user_id = int(sys.argv[1])
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(user_id)).json()
+    users = requests.get(url + "users").json()
     todos = requests.get(url + "todos").json()
+    user = [user for user in users if user.get('id') == user_id][0]
     todos = [todo for todo in todos if todo.get('userId') == user_id]
 
     completed = [todo.get("title") for todo in todos if todo.get("completed")]
