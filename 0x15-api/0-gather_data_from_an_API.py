@@ -13,7 +13,8 @@ def get_todos(id):
     url_users = f"https://jsonplaceholder.typicode.com/users/{id}"
     name = requests.get(url_users).json()['name']
     complete = [todo['title'] for todo in todos if todo['completed']]
-    print(f"Employee {name} is done with tasks({len(complete)}/{len(todos)}):")
+    print("Employee {} is done with tasks({}/{}):".format(
+        name, len(complete), len(todos)))
     for title in complete:
         print("\t {}".format(title))
 
