@@ -15,7 +15,7 @@ def get_todos(id):
     complete = [todo['title'] for todo in todos if todo['completed']]
     print(f"Employee {name} is done with tasks({len(complete)}/{len(todos)}):")
     for title in complete:
-        print("\t{}".format(title))
+        print("\t {}".format(title))
 
 
 if __name__ == "__main__":
